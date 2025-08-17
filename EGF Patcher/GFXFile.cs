@@ -97,7 +97,6 @@ namespace EGF_Patcher
                     0
                 );
             }
-
         }
 
         public void Commit()
