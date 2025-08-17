@@ -23,5 +23,28 @@ namespace EGF_Patcher
 
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool EndUpdateResource(IntPtr hUpdate, bool fDiscard);
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool FreeLibrary(IntPtr hModule);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool EnumResourceLanguages(
+            IntPtr hModule,
+            IntPtr lpszType,
+            IntPtr lpszName,
+            EnumResLangProc lpEnumFunc,
+            IntPtr lParam
+        );
+
+        public delegate bool EnumResLangProc(
+            IntPtr hModule,
+            IntPtr lpszType,
+            IntPtr lpszName,
+            ushort wLanguage,
+            IntPtr lParam
+        );
     }
 }
